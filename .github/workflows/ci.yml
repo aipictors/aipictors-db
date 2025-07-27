@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test and Build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run type check
+        run: bun run tsc --noEmit
+
+      - name: Run tests
+        run: bun test
+
+      - name: Build check
+        run: bunx wrangler publish --dry-run
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Check for syntax errors
+        run: bun run src/index.ts --check
+
+  lint:
+    runs-on: ubuntu-latest
+    name: Lint
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Check formatting
+        run: |
+          # Check if files need formatting
+          if ! bun run --bun prettier --check "src/**/*.{ts,js,json}" "*.{md,json}"; then
+            echo "❌ Some files need formatting. Run 'bun run prettier --write .' to fix."
+            exit 1
+          fi
+          echo "✅ All files are properly formatted."

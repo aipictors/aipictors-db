@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AiPictors DB API</title>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6;
+        background-color: #fafafa;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .section {
+        margin: 20px 0;
+        padding: 25px;
+        background: white;
+        border: 1px solid #e1e1e1;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #444;
+        margin-top: 0;
+        border-bottom: 2px solid #e1306c;
+        padding-bottom: 8px;
+      }
+
+      h3,
+      h4 {
+        color: #555;
+        margin-top: 20px;
+      }
+
+      pre {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 6px;
+        overflow-x: auto;
+        border-left: 4px solid #0066cc;
+        margin: 10px 0;
+      }
+
+      code {
+        font-family: "Monaco", "Menlo", "Consolas", monospace;
+        font-size: 14px;
+      }
+
+      .graphql-link {
+        display: inline-block;
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #e1306c, #ff6b9d);
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        margin: 15px 0;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .graphql-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(225, 48, 108, 0.3);
+      }
+
+      p {
+        color: #666;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="heading">AiPictors DB API</h1>
+
+    <div class="section">
+      <h2>GraphQL Playground</h2>
+      <p>GraphQL APIでSupabaseのデータにアクセスできます。</p>
+      <a href="/graphql" class="graphql-link" target="_blank"
+        >GraphQL Playgroundを開く</a
+      >
+
+      <h3>利用可能なクエリとミューテーション:</h3>
+      <h4>クエリ例:</h4>
+      <pre><code>query {
+  userLikeRankings(limit: 5) {
+    id
+    user_id
+    count
+    created_at
+  }
+}</code></pre>
+
+      <h4>ミューテーション例:</h4>
+      <pre><code>mutation {
+  incrementUserLikeCount(user_id: "user123") {
+    id
+    user_id
+    count
+    updated_at
+  }
+}</code></pre>
+    </div>
+
+    <script></script>
+  </body>
+</html>
