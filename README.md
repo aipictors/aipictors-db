@@ -5,10 +5,6 @@
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-orange)](https://workers.cloudflare.com/)
 [![CI](https://github.com/aipictors/aipictors-db/actions/workflows/ci.yml/badge.svg)](https://github.com/aipictors/aipictors-db/actions/workflows/ci.yml)
 
-**AiPictors**のバックエンドAPIサービスです。Cloudflare Workersを使用してSupabaseデータベースへのアクセスを提供し、GraphQLとREST APIの両方をサポートしています。
-
-🌐 **本番環境**: https://aipictors-db.aipictors.workers.dev/ictors Database API
-
 **Aipictors**のバックエンドAPIサービスです。Cloudflare Workersを使用してSupabaseデータベースへのアクセスを提供し、GraphQLとREST APIの両方をサポートしています。
 
 🌐 **本番環境**: https://aipictors-db.aipictors.workers.dev/
