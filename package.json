@@ -16,6 +16,8 @@
     "hono": "^4.4.13"
   },
   "devDependencies": {
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "vitest": "^2.0.0",
+    "@types/node": "^20.0.0"
   }
 }
