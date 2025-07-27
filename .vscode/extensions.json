@@ -1,0 +1,22 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "ms-vscode.vscode-typescript-next",
+    "graphql.vscode-graphql",
+    "graphql.vscode-graphql-syntax",
+    "ms-vscode.vscode-json",
+    "vitest.explorer",
+    "ms-vscode.test-adapter-converter",
+    "cloudflare.vscode-wrangler",
+    "github.vscode-github-actions",
+    "github.copilot",
+    "github.copilot-chat",
+    "ms-vscode.vscode-eslint",
+    "bradlc.vscode-tailwindcss",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    "vivaxy.vscode-conventional-commits"
+  ],
+  "unwantedRecommendations": ["ms-vscode.vscode-typescript"]
+}

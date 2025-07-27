@@ -2,9 +2,9 @@ name: CI
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
@@ -51,8 +51,8 @@ jobs:
       - name: Check formatting
         run: |
           # Check if files need formatting
-          if ! bun run --bun prettier --check "src/**/*.{ts,js,json}" "*.{md,json}"; then
-            echo "❌ Some files need formatting. Run 'bun run prettier --write .' to fix."
+          if ! bun run format:check; then
+            echo "❌ Some files need formatting. Run 'bun run format' to fix."
             exit 1
           fi
           echo "✅ All files are properly formatted."

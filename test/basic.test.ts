@@ -10,7 +10,7 @@ describe('AiPictors Database API', () => {
       SUPABASE_URL: 'https://test.supabase.co',
       SUPABASE_ANON_KEY: 'test-anon-key',
     }
-    
+
     expect(mockEnv.SUPABASE_URL).toBeDefined()
     expect(mockEnv.SUPABASE_ANON_KEY).toBeDefined()
     expect(typeof mockEnv.SUPABASE_URL).toBe('string')
@@ -25,7 +25,7 @@ describe('AiPictors Database API', () => {
 
   it('should have valid package.json configuration', async () => {
     const packageJson = await import('../package.json')
-    
+
     expect(packageJson.scripts).toHaveProperty('dev')
     expect(packageJson.scripts).toHaveProperty('deploy')
     expect(packageJson.scripts).toHaveProperty('test')

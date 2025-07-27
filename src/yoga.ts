@@ -1,16 +1,16 @@
-import { createYoga } from "graphql-yoga";
-import { schema } from "./schema";
+import { createYoga } from 'graphql-yoga'
+import { schema } from './schema'
 
 export const yoga = createYoga({
   schema,
-  graphqlEndpoint: "/graphql",
+  graphqlEndpoint: '/graphql',
   context: ({ request }) => {
     // リクエストからコンテキストを取得
-    return (request as any).context || {};
+    return (request as any).context || {}
   },
   cors: {
-    origin: "*",
+    origin: '*',
     credentials: true,
   },
   graphiql: true,
-});
+})

@@ -1,0 +1,44 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "typescript.preferences.useAliasesForRenames": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "files.associations": {
+    "*.jsonc": "json",
+    "wrangler.toml": "toml"
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/bun.lock": true,
+    "**/.wrangler": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bun.lock": true,
+    "**/.wrangler": true
+  },
+  "emmet.includeLanguages": {
+    "typescript": "html"
+  },
+  "typescript.suggest.autoImports": true,
+  "javascript.suggest.autoImports": true,
+  "conventionalCommits.emojiFormat": "emoji",
+  "conventionalCommits.showEditor": true,
+  "conventionalCommits.scopes": [
+    "api",
+    "graphql",
+    "db",
+    "test",
+    "ci",
+    "docs",
+    "config"
+  ]
+}

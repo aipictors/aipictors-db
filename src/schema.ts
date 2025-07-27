@@ -1,5 +1,5 @@
-import { makeExecutableSchema } from "@graphql-tools/schema";
-import type { YogaContext } from "./context";
+import { makeExecutableSchema } from '@graphql-tools/schema'
+import type { YogaContext } from './context'
 
 // GraphQL Type Definitions
 const typeDefs = `
@@ -29,7 +29,7 @@ const typeDefs = `
     """
     incrementUserLikeCount(user_id: String!): UserLikeRanking!
   }
-`;
+`
 
 // GraphQL Resolvers
 const resolvers = {
@@ -37,37 +37,37 @@ const resolvers = {
     userLikeRankings: async (
       _parent: any,
       args: { limit?: number },
-      context: YogaContext,
+      context: YogaContext
     ) => {
       const { data, error } = await context.supabase
-        .from("user_like_ranking")
-        .select("*")
-        .order("count", { ascending: false })
-        .limit(args.limit || 10);
+        .from('user_like_ranking')
+        .select('*')
+        .order('count', { ascending: false })
+        .limit(args.limit || 10)
 
       if (error) {
-        throw new Error(`Failed to fetch user like rankings: ${error.message}`);
+        throw new Error(`Failed to fetch user like rankings: ${error.message}`)
       }
 
-      return data || [];
+      return data || []
     },
 
     userLikeRanking: async (
       _parent: any,
       args: { id: string },
-      context: YogaContext,
+      context: YogaContext
     ) => {
       const { data, error } = await context.supabase
-        .from("user_like_ranking")
-        .select("*")
-        .eq("id", args.id)
-        .single();
+        .from('user_like_ranking')
+        .select('*')
+        .eq('id', args.id)
+        .single()
 
       if (error) {
-        throw new Error(`Failed to fetch user like ranking: ${error.message}`);
+        throw new Error(`Failed to fetch user like ranking: ${error.message}`)
       }
 
-      return data;
+      return data
     },
   },
 
@@ -75,52 +75,52 @@ const resolvers = {
     incrementUserLikeCount: async (
       _parent: any,
       args: { user_id: string },
-      context: YogaContext,
+      context: YogaContext
     ) => {
       // 既存のレコードを取得
       const { data: existingData } = await context.supabase
-        .from("user_like_ranking")
-        .select("*")
-        .eq("user_id", args.user_id)
-        .single();
+        .from('user_like_ranking')
+        .select('*')
+        .eq('user_id', args.user_id)
+        .single()
 
       if (existingData) {
         // 既存レコードのカウントをインクリメント
         const currentCount =
-          typeof existingData.count === "number" ? existingData.count : 0;
+          typeof existingData.count === 'number' ? existingData.count : 0
         const { data, error } = await context.supabase
-          .from("user_like_ranking")
+          .from('user_like_ranking')
           .update({ count: currentCount + 1 })
-          .eq("user_id", args.user_id)
+          .eq('user_id', args.user_id)
           .select()
-          .single();
+          .single()
 
         if (error) {
           throw new Error(
-            `Failed to increment user like count: ${error.message}`,
-          );
+            `Failed to increment user like count: ${error.message}`
+          )
         }
 
-        return data;
+        return data
       } else {
         // 新しいレコードを作成
         const { data, error } = await context.supabase
-          .from("user_like_ranking")
+          .from('user_like_ranking')
           .insert({ user_id: args.user_id, count: 1 })
           .select()
-          .single();
+          .single()
 
         if (error) {
-          throw new Error(`Failed to create user like count: ${error.message}`);
+          throw new Error(`Failed to create user like count: ${error.message}`)
         }
 
-        return data;
+        return data
       }
     },
   },
-};
+}
 
 export const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
-});
+})

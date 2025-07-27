@@ -84,7 +84,38 @@ cd aipictors-db
 bun install
 ```
 
-### 3. 環境変数の設定
+### 3. VS Code拡張機能のインストール（推奨）
+
+プロジェクトを開くと、VS Codeが推奨拡張機能のインストールを提案します。以下の拡張機能が自動的に推奨されます：
+
+- **Prettier** - コードフォーマッター
+- **GraphQL** - GraphQL構文ハイライト・IntelliSense
+- **Vitest** - テストランナー
+- **Cloudflare Workers** - Cloudflare開発サポート
+- **GitHub Actions** - CI/CD設定サポート
+- **Conventional Commits** - コミットメッセージヘルパー
+
+### 4. 開発環境の準備
+
+プロジェクトには開発効率を向上させる設定が含まれています：
+
+#### 自動設定される機能
+
+- **コード自動フォーマット**: ファイル保存時にPrettierが自動実行
+- **型チェック**: TypeScriptの型エラーがリアルタイムで表示
+- **Git hooks**: コミット時の自動品質チェック
+- **IntelliSense**: GraphQL、TypeScriptの自動補完
+
+#### 初回セットアップ後の確認
+
+```bash
+# 設定が正しく動作するかテスト
+bun run format:check  # フォーマットチェック
+bun test             # テスト実行
+echo "feat: test setup" | bunx commitlint  # コミット規約チェック
+```
+
+### 5. 環境変数の設定
 
 #### 3.1 Supabaseプロジェクトの作成
 
@@ -157,6 +188,69 @@ bun run dev
 ### ホットリロード
 
 ファイルを変更すると自動的にサーバーが再起動されます。
+
+### コード品質の維持
+
+開発中は以下のコマンドを使用してコード品質を維持してください：
+
+```bash
+# コードをフォーマット
+bun run format
+
+# フォーマットをチェック（CIと同じチェック）
+bun run format:check
+
+# テストを実行
+bun test
+
+# 型チェック
+bun run type-check
+```
+
+### Git コミット規約
+
+このプロジェクトでは[Conventional Commits](https://www.conventionalcommits.org/)規約を使用しています。
+
+#### コミットメッセージの形式
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+#### 使用可能なタイプ
+
+- `feat`: 新機能の追加
+- `fix`: バグ修正
+- `docs`: ドキュメントのみの変更
+- `style`: フォーマット、セミコロンの追加など
+- `refactor`: バグ修正や機能追加ではないコードの変更
+- `perf`: パフォーマンス向上のための変更
+- `test`: テストの追加や修正
+- `chore`: ビルドプロセスやツール、ライブラリの変更
+- `ci`: CI設定ファイルやスクリプトの変更
+- `build`: ビルドシステムや外部依存関係に影響する変更
+- `revert`: 以前のコミットを元に戻す
+
+#### 例
+
+```bash
+feat(api): add user like ranking endpoint
+fix(graphql): resolve schema validation error
+docs: update README with setup instructions
+test(api): add integration tests for ranking endpoint
+```
+
+#### 自動チェック
+
+プロジェクトには以下の自動チェックが設定されています：
+
+- **Pre-commit**: コード品質チェック（フォーマット、型チェック、テスト）
+- **Commit-msg**: コミットメッセージの規約チェック
+- **CI/CD**: GitHub Actions による自動テスト・デプロイ
 
 ## 📚 API仕様
 
@@ -351,6 +445,12 @@ aipictors-db/
 │   └── workflows/
 │       ├── ci.yml         # PRテスト・ビルドチェック
 │       └── deploy.yml     # 自動デプロイ
+├── .husky/                 # Git hooks設定
+│   ├── pre-commit         # コミット前チェック
+│   └── commit-msg         # コミットメッセージチェック
+├── .vscode/                # VS Code設定
+│   ├── extensions.json    # 推奨拡張機能
+│   └── settings.json      # エディター設定
 ├── src/                    # ソースコード
 │   ├── index.ts           # メインエントリーポイント
 │   ├── context.ts         # TypeScript型定義
@@ -364,6 +464,7 @@ aipictors-db/
 │   └── tsconfig.json     # テスト用TypeScript設定
 ├── public/                 # 静的ファイル（現在未使用）
 │   └── index.html         # ランディングページ
+├── commitlint.config.js   # コミットメッセージ規約設定
 ├── package.json           # プロジェクト設定と依存関係
 ├── bun.lock              # Bunのロックファイル
 ├── wrangler.jsonc        # Cloudflare Workers設定
@@ -382,6 +483,9 @@ aipictors-db/
 - **`src/yoga.ts`**: GraphQL Yogaサーバーの設定
 - **`src/context.ts`**: TypeScript型定義（環境変数など）
 - **`wrangler.jsonc`**: Cloudflare Workersのデプロイ設定
+- **`commitlint.config.js`**: Conventional Commitsの規約設定
+- **`.vscode/`**: VS Code開発環境の設定
+- **`.husky/`**: Git hooksによる自動チェック設定
 
 ## 🔧 トラブルシューティング
 
