@@ -1,13 +1,9 @@
-# AiPictors Database API
+# Aipictors Database API
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-orange)](https://workers.cloudflare.com/)
 [![CI](https://github.com/aipictors/aipictors-db/actions/workflows/ci.yml/badge.svg)](https://github.com/aipictors/aipictors-db/actions/workflows/ci.yml)
-
-**AiPictors**のバックエンドAPIサービスです。Cloudflare Workersを使用してSupabaseデータベースへのアクセスを提供し、GraphQLとREST APIの両方をサポートしています。
-
-🌐 **本番環境**: https://aipictors-db.aipictors.workers.dev/ictors Database API
 
 **Aipictors**のバックエンドAPIサービスです。Cloudflare Workersを使用してSupabaseデータベースへのアクセスを提供し、GraphQLとREST APIの両方をサポートしています。
 
