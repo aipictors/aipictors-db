@@ -322,34 +322,56 @@ bunx vitest run
 
 ### テストの種類
 
-- **基本テスト** (`test/basic.test.ts`): 基本的な機能のテスト
-- **スキーマテスト** (`test/schema.test.ts`): GraphQLスキーマの検証
-- **統合テスト**: API エンドポイントの動作確認
+- **基本テスト** (`test/basic.test.ts`): 基本的な機能とpackage.json設定のテスト
+- **スキーマテスト** (`test/schema.test.ts`): GraphQLスキーマの検証テスト
 
 ### テストの追加
 
 `test/` ディレクトリにテストファイルを追加してください。ファイル名は `*.test.ts` または `*.spec.ts` にしてください。
 
+### テストの実行結果例
+
+```bash
+$ bun test
+✓ GraphQL Schema > should have valid UserLikeRanking type definition
+✓ GraphQL Schema > should have valid mutation type
+✓ AiPictors Database API > should be able to run basic tests
+✓ AiPictors Database API > should have required environment types
+✓ AiPictors Database API > should be able to create requests
+✓ AiPictors Database API > should have valid package.json configuration
+
+6 pass, 0 fail
+```
+
 ## 📁 プロジェクト構造
 
 ```
 aipictors-db/
+├── .github/                # GitHub Actions設定
+│   └── workflows/
+│       ├── ci.yml         # PRテスト・ビルドチェック
+│       └── deploy.yml     # 自動デプロイ
 ├── src/                    # ソースコード
 │   ├── index.ts           # メインエントリーポイント
 │   ├── context.ts         # TypeScript型定義
 │   ├── schema.ts          # GraphQLスキーマとリゾルバー
-│   └── yoga.ts            # GraphQL Yoga設定
+│   ├── yoga.ts            # GraphQL Yoga設定
+│   └── builder.ts         # 追加のビルダー関数
 ├── test/                   # テストファイル
-│   ├── index.spec.ts      # メインテスト
+│   ├── basic.test.ts      # 基本機能テスト
+│   ├── schema.test.ts     # GraphQLスキーマテスト
 │   ├── env.d.ts          # テスト環境の型定義
 │   └── tsconfig.json     # テスト用TypeScript設定
-├── public/                 # 静的ファイル
+├── public/                 # 静的ファイル（現在未使用）
 │   └── index.html         # ランディングページ
 ├── package.json           # プロジェクト設定と依存関係
 ├── bun.lock              # Bunのロックファイル
 ├── wrangler.jsonc        # Cloudflare Workers設定
 ├── tsconfig.json         # TypeScript設定
 ├── vitest.config.mts     # Vitestテスト設定
+├── .prettierrc           # Prettierフォーマット設定
+├── .prettierignore       # Prettierの除外設定
+├── LICENSE               # MITライセンス
 └── README.md             # このファイル
 ```
 
